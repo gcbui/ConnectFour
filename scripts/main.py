@@ -69,8 +69,24 @@ class Board:
         return False    
 
     def check_diagonal(self,player):
+        r=0
+        for r in range(len(self.grid)):
+            for col in range(len(self.grid[0])):
+                four_in_a_row = 0 
+                i=0
+                for row in range(len(self.grid)):
+                    if i >= len(self.grid[row]):
+                        break
+                    elif self.grid[row+r][col+i] == player.piece_type:
+                        four_in_a_row+=1
+                        if four_in_a_row==4:
+                            return True   
+                    else:
+                        four_in_a_row = 0
+                    i+=1
+            r+=1
         return False
-
+                
     def check_tie(self):
         for col in self.grid[0]:
             if col == ' ':
